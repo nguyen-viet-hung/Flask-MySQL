@@ -1,7 +1,6 @@
-#/usr/bin/python
-
 from flask import Flask, render_template, json, request
 from flaskext.mysql import MySQL
+
 from werkzeug import generate_password_hash, check_password_hash
 #for https
 from OpenSSL import SSL
@@ -16,9 +15,7 @@ app.config['MYSQL_DATABASE_DB'] = 'BucketList'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
-context = SSL.Context(SSL.PROTOCOL_TLSv1_2)
-context.use_privatekey_file('key.perm')
-context.use_certificate_file('crt.perm')
+context = ('cert.pem', 'key.pem')
 
 @app.route("/")
 def main():
